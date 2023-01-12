@@ -4,7 +4,7 @@ const express = require('express')
 
 const app = express();
 
-app.listen(3001);
+app.listen(3000);
 
 const aws = require('aws-sdk')
 const multer = require('multer')
@@ -34,7 +34,7 @@ const upload = multer({
 
 app.post('/upload', upload.single('file'), async function (req, res, next) {
 
-    res.send('Successfully uploaded ' + req.file.location + ' location!')
+    res.send('Sucesso no uploaded ' + req.file.location + ' location!')
 
 })
 
@@ -46,15 +46,24 @@ app.get("/list", async (req, res) => {
 })
 
 
+// É necessario colocar o nome correto do arquivo que está em S3
+
 app.get("/download/:filename", async (req, res) => {
     const filename = req.params.filename
     let x = await s3.getObject({ Bucket: BUCKET, Key: filename }).promise();
-    res.send(x.Body)
+
+    res.send('Sucesso no Download ' + x.Body)
+        (async () => {
+            const database = require('./db');
+            const enterprise = require('./enterprise');
+            await database.sync(x.Body)
+        })
 })
 
-app.delete("/delete/:filename", async (req, res) => {
-    const filename = req.params.filename
-    await s3.deleteObject({ Bucket: BUCKET, Key: filename }).promise();
-    res.send("File Deleted Successfully")
+// app.delete("/delete/:filename", async (req, res) => {
+//     const filename = req.params.filename
+//     await s3.deleteObject({ Bucket: BUCKET, Key: filename }).promise();
+//     res.send("File Deleted Successfully")
 
-})
+// })
+
