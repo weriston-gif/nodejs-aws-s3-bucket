@@ -53,7 +53,7 @@ app.get("/download/:filename", async (req, res) => {
     let x = await s3.getObject({ Bucket: BUCKET, Key: filename }).promise();
     var fs = require('fs');
     const { parse } = require("csv-parse");
-    const directory = path.join('/home/weriston/Downloads', filename)
+    const directory = path.join('<<Caminho arquivo >>', filename)
     csvtojson().fromFile(directory).then(source => {
 
         // Fetching the data from each row 
