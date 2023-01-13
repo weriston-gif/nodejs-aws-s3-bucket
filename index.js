@@ -56,13 +56,15 @@ app.get("/download/:filename", async (req, res) => {
     const directory = path.join('/home/weriston/Documentos', filename)
     csvtojson().fromFile(directory).then(source => {
 
-        // Lista o CSV em formato Json logo após fiz ess loop para percorrer
+        // Fetching the data from each row 
+        // and inserting to the table "sample"
         for (var i = 0; i < source.length; i++) {
             const cpf = require('node-cpf');
             const format = cpf.unMask(source[i]['Doc Originador']);
             const formatCPF_CNPJ = cpf.unMask(source[i]['Doc Originador']);
 
-            //Depois de percorrer armazena em determinada variavel 
+            // console.log(format);
+            // console.log(source[i]['Doc Originador']);
 
             var Originador = source[i]["Originador"],
                 Doc_Originador = parseInt(format),
@@ -92,8 +94,10 @@ app.get("/download/:filename", async (req, res) => {
                 Data_Cobra_CBB = source[i]["Data de Compra CCB"],
                 Preco_Aquisicao = source[i]["Preco Aquisicao"]
 
-                // funcção async aonde ele seta esses novos valores para setar no banco de dados
-           
+            var items = [Originador, Doc_Originador, Cedente, Doc_Cedente, CCB, Id_externo, Cliente, cpf_cnpj, Endereco, CEP, Cidade, UF, Valor_emprestimo, Taxa_juros, Parcelas, Principal, Juros, IOF, Comissao, Total_Parcelas, Parcela, Multa, Mora, Data_Emissao, Data_Vencimento, Data_Cobra_CBB, Preco_Aquisicao];
+
+            // Inserting data of current row
+            // into database
             (async () => {
                 try {
                     const database = require('./db');
