@@ -1,4 +1,5 @@
 const Sequelize = require('sequelize')
+require("dotenv").config()
 const sequelize = new Sequelize('DB-ENTERPRISE', 'root', 'Alves@123', {
 
     dialect: 'mysql',

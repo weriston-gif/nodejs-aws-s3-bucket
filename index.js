@@ -56,15 +56,13 @@ app.get("/download/:filename", async (req, res) => {
     const directory = path.join('/home/weriston/Documentos', filename)
     csvtojson().fromFile(directory).then(source => {
 
-        // Fetching the data from each row 
-        // and inserting to the table "sample"
+        // Lista o CSV em formato Json logo após fiz ess loop para percorrer
         for (var i = 0; i < source.length; i++) {
             const cpf = require('node-cpf');
             const format = cpf.unMask(source[i]['Doc Originador']);
             const formatCPF_CNPJ = cpf.unMask(source[i]['Doc Originador']);
 
-            // console.log(format);
-            // console.log(source[i]['Doc Originador']);
+            //Depois de percorrer armazena em determinada variavel 
 
             var Originador = source[i]["Originador"],
                 Doc_Originador = parseInt(format),
@@ -94,12 +92,8 @@ app.get("/download/:filename", async (req, res) => {
                 Data_Cobra_CBB = source[i]["Data de Compra CCB"],
                 Preco_Aquisicao = source[i]["Preco Aquisicao"]
 
-            // var insertStatement =
-            //     `INSERT INTO enterpriseF values(?, ?, ?, ?, ?,?, ?, ?, ?, ?,?, ?, ?, ?, ?,?, ?, ?, ?, ?,?, ?, ?, ?, ?,?, ?, ?, ?, ?)`;
-            var items = [Originador, Doc_Originador, Cedente, Doc_Cedente, CCB, Id_externo, Cliente, cpf_cnpj, Endereco, CEP, Cidade, UF, Valor_emprestimo, Taxa_juros, Parcelas, Principal, Juros, IOF, Comissao, Total_Parcelas, Parcela, Multa, Mora, Data_Emissao, Data_Vencimento, Data_Cobra_CBB, Preco_Aquisicao];
-
-            // Inserting data of current row
-            // into database
+                // funcção async aonde ele seta esses novos valores para setar no banco de dados
+           
             (async () => {
                 try {
                     const database = require('./db');
@@ -148,18 +142,6 @@ app.get("/download/:filename", async (req, res) => {
 
 
     });
-
-    // fs.createReadStream(directory)
-    //     .pipe(parse({ delimiter: "," }))
-    //     .on("data", function (value) {
-    //         console.log(value);
-    //     })
-    //     .on("end", function () {
-    //         // console.log("finished");
-    //     })
-    //     .on("error", function (error) {
-    //         console.log(error.message);
-    //     });
 
     res.send()
 
