@@ -1,7 +1,7 @@
 const Sequelize = require('sequelize')
 const database = require('./db')
 
-const Enterprise = database.define('enterprise', {
+const Enterprise = database.define('ENTERPRISE', {
     id: {
         type: Sequelize.INTEGER,
         autoIncrement: true,
@@ -9,112 +9,107 @@ const Enterprise = database.define('enterprise', {
         primaryKey: true
 
     },
-    originador: {
+    Originador: {
         type: Sequelize.STRING(200),
-        allowNull: false,
-
-
     },
-    doc_originador: {
+    Doc_Originador: {
         type: Sequelize.INTEGER,
-        allowNull: false,
     },
-    cendente: {
+    Cedente: {
         type: Sequelize.STRING(200),
     },
-    cendente_doc: {
-        type: Sequelize.DECIMAL,
-        allowNull: false,
-
-
+    Doc_Cedente: {
+        type: Sequelize.INTEGER,
     },
-    cdb: {
-        type: Sequelize.DECIMAL,
-
+    CCB: {
+        type: Sequelize.INTEGER,
     }
     ,
-    cliente: {
-        type: Sequelize.STRING(200),
-        allowNull: false,
+    Id_externo: {
+        type: Sequelize.INTEGER,
     },
     cpf_cnpj: {
-        type: Sequelize.DECIMAL,
-        allowNull: false,
+        type: Sequelize.INTEGER,
     },
-    adress: {
+    Endereco: {
         type: Sequelize.STRING(200),
     },
-    cep: {
-        type: Sequelize.DECIMAL,
-
+    CEP: {
+        type: Sequelize.INTEGER,
     },
-    city: {
+    Cidade: {
         type: Sequelize.STRING(200),
-    },
-    uf: {
-        type: Sequelize.STRING(5),
+
 
     },
-    enterprise_value: {
-        type: Sequelize.DECIMAL
+    UF: {
+        type: Sequelize.STRING(200),
 
     },
-    enterprise_rate_fees: {
-        type: Sequelize.DECIMAL
+
+    Valor_emprestimo: {
+        type: Sequelize.DECIMAL(10, 2),
+
 
     },
-    portion: {
-        type: Sequelize.DECIMAL
+    Taxa_juros: {
+        type: Sequelize.DECIMAL(10, 2),
+
 
     },
-    main: {
-        type: Sequelize.DECIMAL
+    Parcelas: {
+        type: Sequelize.DECIMAL(10, 2),
 
     },
-    fees: {
-        type: Sequelize.DECIMAL
+    Principal: {
+        type: Sequelize.DECIMAL(10, 2),
 
     },
-    iof: {
-        type: Sequelize.DECIMAL
+    Juros: {
+        type: Sequelize.DECIMAL(10, 2)
 
     },
-    commission: {
-        type: Sequelize.DECIMAL
+    IOF: {
+        type: Sequelize.DECIMAL(10, 2)
 
     },
-    commission: {
-        type: Sequelize.DECIMAL
+    Comissao: {
+        type: Sequelize.DECIMAL(10, 2)
 
     },
-    total_installments: {
-        type: Sequelize.DECIMAL
+    Total_Parcelas: {
+        type: Sequelize.INTEGER
 
     },
-    installments: {
-        type: Sequelize.DECIMAL
+    Parcela: {
+        type: Sequelize.INTEGER
 
     },
-    multa: {
-        type: Sequelize.DECIMAL
+    Multa: {
+        type: Sequelize.INTEGER
 
     },
-    mora: {
-        type: Sequelize.DECIMAL
+    Mora: {
+        type: Sequelize.INTEGER
 
     },
-    due_date: {
+    Data_Emissao: {
         type: Sequelize.DATE
 
     },
-    ccb_date: {
+    Data_Vencimento: {
         type: Sequelize.DATE
-
+        
     },
-    prince: {
-        type: Sequelize.DECIMAL
-
+    Data_Cobra_CBB: {
+        type: Sequelize.DATE
+        
     },
+    Preco_Aquisicao: {
+        type: Sequelize.INTEGER
+
+    }
+
 
 
 });
