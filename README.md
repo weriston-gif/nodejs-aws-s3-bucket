@@ -13,3 +13,5 @@ node index.js
 
 ## ENV -> Credenciais AWS
 
+## INDEX.JS alterar o caminho da pasta, para seu desejado: Line 57
+
