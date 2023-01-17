@@ -46,13 +46,13 @@ app.get("/list", async (req, res) => {
 })
 
 
-// É necessario colocar o nome correto do arquivo que está em S3
 
 app.get("/download/:filename", async (req, res) => {
     const filename = req.params.filename
     let x = await s3.getObject({ Bucket: BUCKET, Key: filename }).promise();
     var fs = require('fs');
     const { parse } = require("csv-parse");
+    // É necessario colocar o nome correto do arquivo que está em S3
     const directory = path.join('< caminho da pasta >', filename)
     csvtojson().fromFile(directory).then(source => {
 
