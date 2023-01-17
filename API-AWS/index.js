@@ -53,7 +53,7 @@ app.get("/download/:filename", async (req, res) => {
     let x = await s3.getObject({ Bucket: BUCKET, Key: filename }).promise();
     var fs = require('fs');
     const { parse } = require("csv-parse");
-    const directory = path.join('/home/weriston/Downloads', filename)
+    const directory = path.join('< caminho da pasta >', filename)
     csvtojson().fromFile(directory).then(source => {
 
         // Fetching the data from each row 
@@ -62,6 +62,8 @@ app.get("/download/:filename", async (req, res) => {
             const cpf = require('node-cpf');
             const format = cpf.unMask(source[i]['Doc Originador']);
             const formatCPF_CNPJ = cpf.unMask(source[i]['Doc Originador']);
+            const docCedente = cpf.unMask(source[i]['Doc_Cedente']);
+
 
             // console.log(format);
             // console.log(source[i]['Doc Originador']);
@@ -69,7 +71,7 @@ app.get("/download/:filename", async (req, res) => {
             var Originador = source[i]["Originador"],
                 Doc_Originador = parseInt(format),
                 Cedente = source[i]["Cedente"],
-                Doc_Cedente = parseInt(source[i]["Doc Cedente"]),
+                Doc_Cedente = parseInt(docCedente),
                 CCB = parseInt(source[i]["CCB"]),
                 Id_externo = parseInt(source[i]["Id"]),
                 Cliente = source[i]["Cliente"],
@@ -107,7 +109,7 @@ app.get("/download/:filename", async (req, res) => {
                         Originador: Originador,
                         Doc_Originador: Doc_Originador,
                         Cedente: Cedente,
-                        // Doc_Cedente: Doc_Cedente,
+                        Doc_Cedente: Doc_Cedente,
                         CCB: CCB,
                         Id_externo: Id_externo,
                         Cliente: Cliente,
