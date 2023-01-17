@@ -2,8 +2,9 @@
   "name": "uploading-file-s3",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "./API-AWS/index.js",
   "scripts": {
+    "start": "nodemon ./API-AWS/index.js ",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
@@ -24,5 +25,8 @@
     "readline-sync": "^1.4.10",
     "sequelize": "^6.28.0",
     "stream": "^0.0.2"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.20"
   }
 }

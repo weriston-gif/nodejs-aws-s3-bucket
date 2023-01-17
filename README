@@ -1,1 +1,18 @@
 ###
+
+ACCESS IN .ENV 
+Dados do bucket s3 
+Dados do database
+
+
+### INSTALLL PROJECT 
+NPM INSTALLL
+NPM INIT
+
+### START PROJECT
+npm run start 
+
+
+### OBS : Arquivo Index.js Metodos POST | GET
+Adicionar o caminho aonde salvar arquivo Line 56
+Para fazer o dowloand do arquivo é necessaario informa o nome do arquivo no Bucket S3
