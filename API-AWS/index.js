@@ -61,8 +61,8 @@ app.get("/download/:filename", async (req, res) => {
         for (var i = 0; i < source.length; i++) {
             const cpf = require('node-cpf');
             const format = cpf.unMask(source[i]['Doc Originador']);
-            const formatCPF_CNPJ = cpf.unMask(source[i]['Doc Originador']);
-            const docCedente = cpf.unMask(source[i]['Doc_Cedente']);
+            const formatCPF_CNPJ = cpf.unMask(source[i]['CPF/CNPJ']);
+            const docCedente = cpf.unMask(source[i]['Doc Cedente']);
 
 
             // console.log(format);
